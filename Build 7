@@ -1,0 +1,62 @@
+// constants won't change. They're used here to
+// set pin numbers:
+const int buttonPin1 = 2;     // the number of the pushbutton pin
+const int buttonPin2 = 3; 
+const int buttonPin3 = 4; 
+const int buttonPin4 = 5; 
+const int ledPinR =  13;      // the number of the LED pin
+const int ledPinG =  12; 
+boolean button1 = false;
+boolean button2 = false;
+boolean button3 = false;
+boolean button4 = false;
+
+
+// variables will change:
+int buttonState1 = 0; // variable for reading the pushbutton status
+int buttonState2 = 0; 
+int buttonState3 = 0; 
+int buttonState4 = 0; 
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPinR, OUTPUT);
+  pinMode(ledPinG, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(buttonPin3, INPUT);
+  pinMode(buttonPin4, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+  buttonState3 = digitalRead(buttonPin3);
+  buttonState4 = digitalRead(buttonPin4);
+
+  // check if the pushbutton is pressed.
+  // if it is, the buttonState is HIGH:
+  if (buttonState1 == LOW) {
+    button1 = true;
+  }
+  if (button1 == true && buttonState3 == LOW){
+    button3 = true;
+  }
+  if (button3 == true && buttonState2 == LOW){
+    button2 = true;
+  }
+  if (button2 == true && buttonState4 == LOW){
+    button4 = true;
+  }
+  if (button4 == true){
+    digitalWrite(ledPinG, HIGH);
+    digitalWrite(ledPinR, LOW);
+  } else {
+  
+    // turn LED off:
+    digitalWrite(ledPinR, HIGH);
+    digitalWrite(ledPinG, LOW);
+  }
+}
